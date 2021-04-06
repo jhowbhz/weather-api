@@ -4,13 +4,13 @@ Is a simple API develop in PYTHON and Flask, to integration in OpenWeatherMap fo
 ## Climate for city and state
 <u>get temperature and climate for city and state </u>
 
-``GET : /api/weather/city/?city=Belo%20Horizonte,minas%20gerais``
+``GET : https://weather.contrateumdev.com.br/api/weather/city/?city=Belo%20Horizonte,minas%20gerais``
 <hr>
 
 ## Climate for latitude longitude
 <u>get temperature and climate for latitude longitude </u>
 
-``GET : /api/weather?lat=-19.8218131&lon=-44.0094874``
+``GET : https://weather.contrateumdev.com.br/api/weather?lat=-19.8218131&lon=-44.0094874``
 <hr>
 
 ### Example city JS
