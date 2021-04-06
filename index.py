@@ -12,7 +12,7 @@ from flask_cors import CORS, cross_origin
 app = flask.Flask(__name__)
 app.config['DEBUG'] = False
 port = 83
-key = "7e6b9ffa10bb2e7c20ce93d7e263454f"
+key = ""
 
 CORS(app, resources=r'/api/*')
 @app.route('/', methods=['get'])
