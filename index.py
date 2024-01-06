@@ -9,15 +9,22 @@ import urllib.parse
 import requests
 from flask_cors import CORS, cross_origin
 
+from os import environ
+
 app = flask.Flask(__name__)
 app.config['DEBUG'] = False
 port = 84
 key = ""
+apikey = environ.get('API_KEY')
 
 CORS(app, resources=r'/api/*')
 @app.route('/', methods=['get'])
 def index():
 
+    #token header != apikey
+    if request.headers.get('token') != apikey:
+        return jsonify({"mensagem": "API Token inválido"}), 402
+    
     # -----------------------------------------------
     # Welcome
     # -----------------------------------------------
@@ -30,6 +37,8 @@ def weatherByCity():
     # Example request GET
     # /api/weather/city/?city=Belo%20Horizonte,minas%20gerais
     # -----------------------------------------------
+    if request.headers.get('token') != apikey:
+        return jsonify({"mensagem": "API Token inválido"}), 402
 
     city = urllib.parse.quote(request.args['city']) #""
 
@@ -45,7 +54,9 @@ def weatherByLatLong():
     # Example request GET
     # /api/weather?lat=-19.8218131&lon=-44.0094874
     # -----------------------------------------------
-
+    if request.headers.get('token') != apikey:
+        return jsonify({"mensagem": "API Token inválido"}), 402
+        
     lat = urllib.parse.quote(request.args['lat']) #""
     lon = urllib.parse.quote(request.args['lon']) #""
 
