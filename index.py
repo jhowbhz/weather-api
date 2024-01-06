@@ -17,7 +17,7 @@ load_dotenv()
 app = flask.Flask(__name__)
 app.config['DEBUG'] = False
 port = 84
-key = ""
+key = os.getenv('API_KEY_OPENWEATHERMAP')
 apikey = os.getenv('API_KEY')
 
 CORS(app, resources=r'/api/*')
