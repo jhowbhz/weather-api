@@ -8,14 +8,17 @@ from flask import Flask, request, Response, jsonify, render_template
 import urllib.parse
 import requests
 from flask_cors import CORS, cross_origin
+from dotenv import load_dotenv
 
-from os import environ
+import os
+
+load_dotenv()
 
 app = flask.Flask(__name__)
 app.config['DEBUG'] = False
 port = 84
 key = ""
-apikey = environ.get('API_KEY')
+apikey = os.getenv('API_KEY')
 
 CORS(app, resources=r'/api/*')
 @app.route('/', methods=['get'])
@@ -56,7 +59,7 @@ def weatherByLatLong():
     # -----------------------------------------------
     if request.headers.get('token') != apikey:
         return jsonify({"mensagem": "API Token inválido"}), 402
-        
+
     lat = urllib.parse.quote(request.args['lat']) #""
     lon = urllib.parse.quote(request.args['lon']) #""
 
